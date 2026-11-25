@@ -2,7 +2,7 @@
 
 title: "neuroconscious"
 tagline: "Notes on brains, behaviour and the models we build of them."
-author: "Gio"
+author: "Giovanna Furlan"
 description: "Articles on computational and cognitive neuroscience: EEG, brain-computer interfaces and reinforcement learning models of behaviour."
 language: "en"
 
@@ -17,7 +17,7 @@ base_path: ""
 # Links shown in the footer. Delete any you don't want.
 links:
   - label: "Email"
-    url: "mailto:you@example.com"
+    url: "mailto:giovanna.furlan2001@gmail.com"
   - label: "GitHub"
     url: "https://github.com/Gio-Furlan"
   - label: "Google Scholar"
