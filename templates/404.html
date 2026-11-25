@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% set math = False %}
+{% block title %}Page not found | {{ site.title }}{% endblock %}
+{% block content %}
+<div class="wrap">
+  <header class="article-head">
+    <h1 class="article-title">No signal here</h1>
+    <p class="article-summary">This page doesn't exist, or it has moved. <a href="{{ base }}/">Go to all articles</a>.</p>
+  </header>
+</div>
+{% endblock %}

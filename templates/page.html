@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% set math = page.math %}
+{% block title %}{{ page.title }} | {{ site.title }}{% endblock %}
+{% block description %}{{ page.subtitle or site.description }}{% endblock %}
+{% block content %}
+<article class="wrap article">
+  <header class="article-head{% if page.photo %} has-photo{% endif %}">
+    <div>
+      <h1 class="article-title">{{ page.title }}</h1>
+      {% if page.subtitle %}<p class="article-summary">{{ page.subtitle }}</p>{% endif %}
+    </div>
+    {% if page.photo %}<img class="portrait" src="{{ page.photo }}" alt="Photo of {{ site.author }}">{% endif %}
+  </header>
+  <div class="prose">
+    {{ page.body|safe }}
+  </div>
+</article>
+{% endblock %}

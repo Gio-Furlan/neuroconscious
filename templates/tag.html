@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% from "_macros.html" import entry %}
+{% set math = False %}
+{% block title %}{{ tag.name }} | {{ site.title }}{% endblock %}
+{% block content %}
+<div class="wrap">
+  <header class="article-head">
+    <p class="article-meta"><a href="{{ base }}/tags/">All topics</a></p>
+    <h1 class="article-title">{{ tag.name }}</h1>
+  </header>
+  <ol class="entries entries-flat">
+    {% for a in tag.articles %}{{ entry(a, show_year=True) }}{% endfor %}
+  </ol>
+</div>
+{% endblock %}

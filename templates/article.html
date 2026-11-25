@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% from "_macros.html" import trace %}
+{% set math = article.math %}
+{% block title %}{{ article.title }} | {{ site.title }}{% endblock %}
+{% block description %}{{ article.summary or site.description }}{% endblock %}
+{% block ogtype %}article{% endblock %}
+{% block content %}
+<article class="wrap article">
+  <header class="article-head">
+    <p class="article-meta">
+      <time datetime="{{ article.date.isoformat() }}">{{ article.date|longdate }}</time>
+      <span>{{ article.minutes }} min read</span>
+      {% if article.updated %}<span>Updated {{ article.updated|longdate }}</span>{% endif %}
+    </p>
+    <h1 class="article-title">{{ article.title }}</h1>
+    {% if article.summary %}<p class="article-summary">{{ article.summary }}</p>{% endif %}
+    {{ trace(article.wave, "article-trace", draw=True) }}
+    {% if article.draft %}<p class="draft-note">Draft: only visible in your local preview. Remove <code>draft: true</code> to publish.</p>{% endif %}
+  </header>
+
+  {% if article.toc %}
+  <nav class="toc" aria-label="Contents">
+    <h2>Contents</h2>
+    {{ article.toc|safe }}
+  </nav>
+  {% endif %}
+
+  <div class="prose">
+    {{ article.body|safe }}
+  </div>
+
+  <footer class="article-foot">
+    {% if article.tags %}
+    <p class="article-tags">Filed under
+      {% for t in article.tags %}<a class="tag" href="{{ base }}/tags/{{ t.slug }}/">{{ t.name }}</a>{% endfor %}
+    </p>
+    {% endif %}
+    <nav class="pager" aria-label="More articles">
+      {% if article.older %}<a class="pager-older" href="{{ article.older.url }}"><span>Previous</span>{{ article.older.title }}</a>{% else %}<span></span>{% endif %}
+      {% if article.newer %}<a class="pager-newer" href="{{ article.newer.url }}"><span>Next</span>{{ article.newer.title }}</a>{% endif %}
+    </nav>
+  </footer>
+</article>
+{% endblock %}

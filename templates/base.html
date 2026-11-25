@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="{{ site.language or 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ site.title }}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{{ site.description }}{% endblock %}">
+  <meta name="author" content="{{ site.author }}">
+  <meta property="og:title" content="{{ self.title() }}">
+  <meta property="og:description" content="{{ self.description() }}">
+  <meta property="og:type" content="{% block ogtype %}website{% endblock %}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ base }}/feed.xml">
+  <link rel="icon" href="{{ base }}/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=Schibsted+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ base }}/style.css">
+  <link rel="stylesheet" href="{{ base }}/highlight.css">
+  {% if math %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"
+    onload="renderMathInElement(document.querySelector('main'),{delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],throwOnError:false})"></script>
+  {% endif %}
+</head>
+<body class="{% block bodyclass %}{% endblock %}">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="masthead">
+    <div class="wrap">
+      <nav class="nav" aria-label="Main">
+        <a class="wordmark" href="{{ base }}/">{{ site.title }}</a>
+        <ul>
+          <li><a href="{{ base }}/">Articles</a></li>
+          {% if has_tags %}<li><a href="{{ base }}/tags/">Topics</a></li>{% endif %}
+          {% for p in nav_pages %}<li><a href="{{ p.url }}">{{ p.title }}</a></li>{% endfor %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>{{ site.author }}, {{ year }}</p>
+      <ul>
+        {% for l in site.links or [] %}<li><a href="{{ l.url }}">{{ l.label }}</a></li>{% endfor %}
+        <li><a href="{{ base }}/feed.xml">RSS</a></li>
+      </ul>
+    </div>
+  </footer>
+</body>
+</html>

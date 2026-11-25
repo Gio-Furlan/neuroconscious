@@ -1,0 +1,20 @@
+{% macro trace(w, cls="", draw=False) -%}
+<svg class="trace {{ cls }}{% if draw %} draw{% endif %}" viewBox="0 0 {{ w.w }} {{ w.h }}" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+  <path d="{{ w.d }}" pathLength="1" vector-effect="non-scaling-stroke"/>
+</svg>
+{%- endmacro %}
+
+{% macro entry(a, show_year=False) -%}
+<li class="entry">
+  <a class="entry-link" href="{{ a.url }}">
+    <h3 class="entry-title">{{ a.title }}{% if a.draft %} <span class="draft-flag">Draft</span>{% endif %}</h3>
+    {% if a.summary %}<p class="entry-summary">{{ a.summary }}</p>{% endif %}
+  </a>
+  <p class="entry-meta">
+    <time datetime="{{ a.date.isoformat() }}">{% if show_year %}{{ a.date|longdate }}{% else %}{{ a.date|shortdate }}{% endif %}</time>
+    <span>{{ a.minutes }} min read</span>
+    {% for t in a.tags %}<a class="tag" href="{{ base }}/tags/{{ t.slug }}/">{{ t.name }}</a>{% endfor %}
+  </p>
+  {{ trace(a.wave, "entry-trace") }}
+</li>
+{%- endmacro %}

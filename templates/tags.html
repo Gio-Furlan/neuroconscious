@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% set math = False %}
+{% block title %}Topics | {{ site.title }}{% endblock %}
+{% block content %}
+<div class="wrap">
+  <header class="article-head">
+    <h1 class="article-title">Topics</h1>
+  </header>
+  {% if tags %}
+  <ul class="topic-list">
+    {% for t in tags %}
+    <li><a href="{{ base }}/tags/{{ t.slug }}/">{{ t.name }}</a> <span class="count">{{ t.articles|length }}</span></li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="empty">No topics yet.</p>
+  {% endif %}
+</div>
+{% endblock %}

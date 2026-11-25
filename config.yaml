@@ -1,0 +1,24 @@
+# Site settings. Change these to make the site yours.
+
+title: "neuroconscious"
+tagline: "Notes on brains, behaviour and the models we build of them."
+author: "Gio"
+description: "Articles on computational and cognitive neuroscience: EEG, brain-computer interfaces and reinforcement learning models of behaviour."
+language: "en"
+
+# Your public address once deployed, e.g. https://yourname.github.io
+# (The GitHub Pages workflow fills this in automatically; it's only used
+# for the RSS feed and sitemap when you build locally.)
+url: "https://gio-furlan.github.io/neuroconscious"
+
+# Leave empty unless the site lives in a subfolder of a domain.
+base_path: ""
+
+# Links shown in the footer. Delete any you don't want.
+links:
+  - label: "Email"
+    url: "mailto:you@example.com"
+  - label: "GitHub"
+    url: "https://github.com/Gio-Furlan"
+  - label: "Google Scholar"
+    url: "https://scholar.google.com/"

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>{{ site_url }}/</loc></url>
+  {% for a in articles %}<url><loc>{{ site_url }}/articles/{{ a.slug }}/</loc><lastmod>{{ (a.updated or a.date).isoformat() }}</lastmod></url>
+  {% endfor %}{% for p in pages %}<url><loc>{{ site_url }}/{{ p.slug }}/</loc></url>
+  {% endfor %}<url><loc>{{ site_url }}/tags/</loc></url>
+</urlset>

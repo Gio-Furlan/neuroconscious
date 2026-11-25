@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% from "_macros.html" import trace, entry %}
+{% set math = False %}
+{% block bodyclass %}home{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="wrap">
+    <h1 class="hero-title">{{ site.title }}</h1>
+    {{ trace(site_wave, "hero-trace", draw=True) }}
+    <p class="hero-tagline">{{ site.tagline }}</p>
+  </div>
+</section>
+
+<div class="wrap">
+  {% if not articles %}
+  <p class="empty">The first articles are on their way.{% if nav_pages %} In the meantime, <a href="{{ nav_pages[0].url }}">read about me</a>.{% endif %}</p>
+  {% endif %}
+  {% for y in years %}
+  <section class="year" aria-labelledby="y{{ y.year }}">
+    <h2 class="year-label" id="y{{ y.year }}">{{ y.year }}</h2>
+    <ol class="entries">
+      {% for a in y.articles %}{{ entry(a) }}{% endfor %}
+    </ol>
+  </section>
+  {% endfor %}
+</div>
+{% endblock %}
